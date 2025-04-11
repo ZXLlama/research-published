@@ -1,38 +1,36 @@
 body {
     font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    height: 100vh;
     margin: 0;
     background-color: #121212;
     color: #fff;
-    overflow-y: scroll;
+    overflow-x: hidden;
     scroll-behavior: smooth;
 }
 
 header {
     background-color: rgba(51, 51, 51, 0.8);
     width: 100%;
-    padding: 20px 0;
+    padding: 15px 0;
     text-align: center;
     position: fixed;
     top: 0;
     left: 0;
-    transition: opacity 0.5s ease;
-    opacity: 0; /* 初始隱藏 */
+    z-index: 1000;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 header h1 {
     color: #fff;
     margin: 0;
-    font-size: 2em;
+    font-size: 1.8em;
 }
 
 main {
-    margin-top: 100px; /* 確保內容不被 header 遮擋 */
+    margin-top: 70px; /* 確保內容不被 header 遮擋 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
 }
 
 button {
@@ -53,80 +51,73 @@ button:hover {
     transform: scale(1.1);
 }
 
+#watchButton {
+    background-color: #ff5722;
+    color: #fff;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 6px 12px rgba(255, 87, 34, 0.5);
+    margin: 20px 0;
+}
+
+#watchButton:hover {
+    background-color: #e64a19;
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(255, 87, 34, 0.7);
+}
+
+#watchButton:active {
+    transform: scale(1);
+    box-shadow: 0 4px 8px rgba(255, 87, 34, 0.5);
+}
+
 #gallery {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    max-width: 600px;
 }
 
 .image-container {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
-    opacity: 0;
-    transition: opacity 1s ease;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
     background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-.image-container.right {
-    justify-content: flex-start;
-    padding-left: 10%;
-}
-
-.image-container.left {
-    justify-content: flex-end;
-    padding-right: 10%;
-}
-
-.image-container.center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: relative;
 }
 
 .image-container img {
-    width: auto;
-    height: 90%;
-    object-fit: contain;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
 }
 
 .text {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    bottom: 10px;
+    left: 10px;
     color: #fff;
     padding: 5px 10px;
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 5px;
-    font-size: 1.2em;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-.image-container.left .text {
-    left: 10%;
-}
-
-.image-container.right .text {
-    right: 10%;
+    font-size: 1em;
 }
 
 .page-number {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 10px;
     right: 10px;
     background-color: rgba(0, 0, 0, 0.5);
     color: #fff;
     padding: 5px 10px;
     border-radius: 5px;
-    font-size: 1.2em;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    font-size: 1em;
 }
 
 @keyframes fadeIn {
@@ -138,10 +129,26 @@ button:hover {
     }
 }
 
-.image-container:nth-child(odd) {
-    justify-content: flex-start;
-}
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.5em;
+    }
 
-.image-container:nth-child(even) {
-    justify-content: flex-end;
+    main {
+        margin-top: 80px; /* 縮小 header 的影響 */
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+
+    #watchButton {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+
+    .text, .page-number {
+        font-size: 0.9em;
+    }
 }
